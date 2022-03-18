@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+        <app-small-box class="col-lg-4 col-6" Description="Caisse" Valeur="1"></app-small-box>
+        <app-small-box class="col-lg-4 col-6" Description="Numero Actuel" Valeur="13"></app-small-box>
+        <app-small-box class="col-lg-4 col-6" Description="Personne en Attente" Valeur="13"></app-small-box>
+    </div>
+    <div class="row action">
+      <button type="button" class="btn btn-primary p-3 col-lg-3 col-6 ms-2">
+        <div class="flex action-style" (click)="getNextClient(1)">
+          Suivant
+          <fa-icon [icon]="fanext" class="lg"></fa-icon>
+        </div>
+      </button>
+      <button type="button" class="btn btn-dark p-3 col-lg-3 col-6 ms-2" (click)="speak()">
+        <div class="flex action-style">
+          Rapeller
+          <fa-icon [icon]="facall" class="lg"></fa-icon>
+        </div>
+      </button>
+      <button type="button" class="btn btn-light p-3 col-lg-3 col-6 ms-2">
+        <div class="flex action-style">
+          Quitter
+          <fa-icon [icon]="fadeco" class="lg"></fa-icon>
+        </div>
+      </button>
+      
+    </div>
+</div>
+<app-client Clients="clients"></app-client>

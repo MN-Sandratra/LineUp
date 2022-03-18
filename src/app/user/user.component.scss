@@ -1,0 +1,33 @@
+.app{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    background-color: #e6e9eb;
+}
+.app-body{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    overflow-x: hidden;
+}
+
+
+.my-number h1{
+   font-size: 6em; 
+   font-weight: 600;
+   color: rgb(83, 83, 83);
+}
+.hour{
+    font-weight: 300;
+    font-size: 1.5em;
+}
+.btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #1985ac;
+    border-color: #187da0;
+}
+.bg-primary-mine{
+    border-color: #187da0;
+    background-color: #20a8d8 ;
+}

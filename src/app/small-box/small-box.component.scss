@@ -1,0 +1,32 @@
+.small-box {
+    border-radius: 0.25rem;
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+    text-align: center;
+    padding: 15px;
+
+    .Valeur{
+        font-size: 2em;
+        font-weight: 400;
+    }
+    .description{
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: 1em;
+    }
+}
+.small-box>.small-box-footer {
+    background: rgba(0,0,0,.1);
+    color: rgba(255,255,255,.8);
+    display: block;
+    padding: 3px 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    z-index: 10;
+}
+.bg-info, .bg-info>a {
+    color: #fff!important;
+}
