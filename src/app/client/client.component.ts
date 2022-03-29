@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
 import { ApiManagerService } from '../api-manager.service';
 
 @Component({
@@ -8,39 +10,19 @@ import { ApiManagerService } from '../api-manager.service';
 })
 export class ClientComponent implements OnInit {
 
-  clients=[{
-    "numero":1,
-    "date":"18-03-2022",
-    "Heure":"18:00"
-  },{
-    "numero":2,
-    "date":"18-03-2022",
-    "Heure":"18:10"
-  },
-  {
-    "numero":3,
-    "date":"18-03-2022",
-    "Heure":"18:40"
-  },
-  {
-    "Numero":4,
-    "Date":"18-03-2022",
-    "Heure":"19:00"
-  }]
+  @Input() Clients:any=[];
+  date=new Date();
+
+  
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+  dtElement:DataTableDirective | undefined;
+  
   constructor(private api:ApiManagerService) { }
   ngOnInit(): void {
-    this.getClient();
+    console.log(this.Clients);
   }
 
-  getClient(){
-    this.api.getAllClient().subscribe(
-      data=>{
-        this.clients=data;
-      },
-      err=>{
-        console.log(err);
-      }
-    )
-  }
+  
 
 }

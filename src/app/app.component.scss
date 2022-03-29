@@ -1,0 +1,11 @@
+//sidebar
+.main-sidebar, .main-sidebar::before {
+    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+    width: 250px;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .main-sidebar, .main-sidebar::before {
+      transition: none;
+    }
+  }

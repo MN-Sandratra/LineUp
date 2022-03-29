@@ -1,0 +1,31 @@
+<!-- Brand Logo -->
+<a [routerLink]="['/']" class="brand-link">
+    <span class="brand-text font-weight-light">Gestion d'attente</span>
+</a>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <!-- Sidebar user (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+            <!-- <img
+                [src]="user.picture || 'assets/img/default-profile.png'"
+                    class="img-circle elevation-2"
+                alt="User Image"
+            /> -->
+            <fa-icon [icon]="myadmin" size="lg" [fixedWidth]="true" class="img-circle"></fa-icon>
+        </div>
+        <div class="info">
+            <a [routerLink]="['/profile']" class="d-block">
+                Caisse {{ncaisse}}
+            </a>
+        </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2" style="overflow-y: hidden">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <app-menu-item *ngFor="let item of menu" [menuItem]="item"></app-menu-item>
+        </ul>
+    </nav>
+</div>

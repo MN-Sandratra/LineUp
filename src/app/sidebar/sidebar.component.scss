@@ -1,0 +1,27 @@
+:host {
+    display: block;
+}
+.nav-link p{
+    font-weight: 500;
+    font-family: Poppins-Regular;
+
+}
+.brand-link{
+    font-family: Poppins-Regular;
+}
+
+.info{
+    font-weight: 500;
+    font-size: 18px;
+    text-transform: capitalize;
+    margin-left: 5px;
+}
+
+.sidebar .mt-2{
+    overflow-x: hidden;
+}
+
+.user-panel{
+    display: flex;
+    align-items: center;
+}

@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/scss/dashboard.scss";
+
+html,
+body {
+  height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+  
+  @font-face {
+    font-family: Poppins-Regular;
+    src: url('./assets/poppins/Poppins-Regular.ttf'); 
+  }
+  
+  @font-face {
+    font-family: Poppins-Medium;
+    src: url('./assets/poppins/Poppins-Medium.ttf'); 
+  }
+  
+  @font-face {
+    font-family: Poppins-Bold;
+    src: url('./assets/poppins/Poppins-Bold.ttf'); 
+  }
+  
+  @font-face {
+    font-family: Poppins-SemiBold;
+    src: url('./assets/poppins/Poppins-SemiBold.ttf'); 
+  }

@@ -8,22 +8,35 @@ import { Observable } from 'rxjs';
 export class ApiManagerService {
 
   constructor(private http:HttpClient) { }
-  private baseUrl = "http://192.168.10.17:7539";
+  private baseUrl = "http://localhost:7539";
 
 
-  getAllClient():Observable<any>{
-    return this.http.get(this.baseUrl+"/api/caisses/1");
+  getAllClient(id:any):Observable<any>{
+    return this.http.get(this.baseUrl+"/api/caisses/"+id);
+  }
+  getAllcaisser():Observable<any>{
+    return this.http.get(this.baseUrl+"/api/caisses/");
   }
 
   getNextClient(id:any):Observable<any>{
     return this.http.get(this.baseUrl+"/api/next/"+id);
   }
 
-  updatePerson(pers:any):Observable<any>{
-    return this.http.put(this.baseUrl+"/api/persons/"+pers.id,pers);
+  TakeNumber():Observable<any>{
+    return this.http.get(this.baseUrl+"/api/numero/");
   }
 
   deletePerson(id:any):Observable<any>{
     return this.http.delete(this.baseUrl+"/api/persons/"+id);
+  }
+
+  addNewcaisse(id:any):Observable<any>{
+    return this.http.get(this.baseUrl+"/api/addCaisse/"+id);
+  }
+  turnCaisse(id:any):Observable<any>{
+    return this.http.get(this.baseUrl+"/api/turnCaisse/"+id);
+  }
+  deconnexion(id:any):Observable<any>{
+    return this.http.get(this.baseUrl+"/api/deconnexion/"+id);
   }
 }

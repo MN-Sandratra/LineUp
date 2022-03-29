@@ -1,26 +1,25 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="#">Liste d'attente</a>
-    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavId">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="#">Action 1</a>
-                    <a class="dropdown-item" href="#">Action 2</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-    </div>
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" (click)="toggleMenuSidebar.emit()" role="button">
+                <fa-icon [icon]="faBars" size="lg" [fixedWidth]="true"></fa-icon>
+            </a>
+        </li>
+    </ul>
+
+    <form class="form-inline ml-3" *ngIf="true">
+        <div class="input-group input-group-sm">
+            <input class="form-control form-control-navbar" type="search" placeholder="Rechercher"
+                aria-label="Search" />
+            <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                    <fa-icon [icon]="faSearch" size="sm" [fixedWidth]="true"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <ul class="navbar-nav ml-auto">
+        <fa-icon [icon]="fapoweroff" size="lg" [fixedWidth]="true" class="poweroff" (click)="deconnexion()"></fa-icon>
+    </ul>
 </nav>

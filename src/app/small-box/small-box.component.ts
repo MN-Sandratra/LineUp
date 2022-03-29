@@ -9,6 +9,7 @@ export class SmallBoxComponent implements OnInit {
 
   @Input() Description:String | undefined;
   @Input() Valeur:any;
+  @Input() Style:any="bg-info";
 
   constructor() { }
 

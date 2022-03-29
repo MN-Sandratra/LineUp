@@ -1,0 +1,32 @@
+.suivi-body{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+}
+.caisse_number{
+    font-size: 4em;
+    font-weight: 700;
+    font-family:Poppins-Regular;
+}
+.card-title{
+    font-weight: 400;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    padding: 20px;
+    font-family:Poppins-Medium;
+}
+.caisse_next{
+    font-family:Poppins-Regular;
+    font-weight: 400;
+    font-size: 1em;
+}
+.card{
+    background: -webkit-linear-gradient(top, #7579ff, #b224ef);
+    border: none;
+}

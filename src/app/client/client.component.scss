@@ -1,0 +1,28 @@
+.card-header{
+    display:flex;
+    flex-direction: column;
+    text-align: right;
+}
+.t-title{
+    font-weight: 400;
+    font-size: 1.8em;
+}
+
+.t-date{
+    font-weight: 200;
+    font-size: 1em;
+    font-style: oblique;
+}
+.tableFixHead{
+    overflow: auto;
+    height: 200px;
+
+    thead {
+        padding: 12px;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: #fff;
+        box-shadow: inset 1px -1p #eee;
+        }
+}

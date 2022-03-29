@@ -4,6 +4,7 @@
     min-height: 100vh;
     align-items: center;
     background-color: #e6e9eb;
+    
 }
 .app-body{
     display: flex;
@@ -12,16 +13,34 @@
     overflow-x: hidden;
 }
 
+.caisse{
+    font-family:Poppins-Regular;
+}
+.card-body{
+    font-family:Poppins-Regular;
+}
+
 
 .my-number h1{
    font-size: 6em; 
    font-weight: 600;
-   color: rgb(83, 83, 83);
+   color: rgb(119, 117, 117);
+   font-family:Poppins-Regular;
 }
 .hour{
     font-weight: 300;
     font-size: 1.5em;
 }
+.btn{
+    padding: 10px 30px;
+    border-radius: 20px;
+    font-family:Poppins-Regular;
+}
+
+.btn:hover{
+    background-color: #11556b;
+}
+
 .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
     color: #fff;
     background-color: #1985ac;

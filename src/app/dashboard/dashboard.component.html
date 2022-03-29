@@ -1,30 +1,53 @@
-<app-header></app-header>
-<div class="container">
-    <div class="row">
-        <app-small-box class="col-lg-4 col-6" Description="Caisse" Valeur="1"></app-small-box>
-        <app-small-box class="col-lg-4 col-6" Description="Numero Actuel" Valeur="13"></app-small-box>
-        <app-small-box class="col-lg-4 col-6" Description="Personne en Attente" Valeur="13"></app-small-box>
-    </div>
+<div class="d-container container">
+  <div class="row">
+    <app-small-box class="col-lg-4 col-6" Description="Caisse" [Valeur]="currentId"></app-small-box>
+    <app-small-box class="col-lg-4 col-6" Description="Numero Actuel" [Valeur]="clients[0] ? clients[0].numero : 0" Style="bg-success"></app-small-box>
+    <app-small-box class="col-lg-4 col-6" Description="Personne(s) en Attente" [Valeur]="clients.length" Style="bg-warning"></app-small-box>
+    <!--apina sauter -->
     <div class="row action">
-      <button type="button" class="btn btn-primary p-3 col-lg-3 col-6 ms-2">
-        <div class="flex action-style" (click)="getNextClient(1)">
-          Suivant
-          <fa-icon [icon]="fanext" class="lg"></fa-icon>
+      <div class="col-12 col-sm-6 col-md-4 btn" (click)="getNextClient(1)" >
+        <div class="info-box">
+          <span class="info-box-icon bg-info elevation-1"><fa-icon [icon]="fanext" class="lg"></fa-icon></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">Suivant</span>
+          </div>
+          <!-- /.info-box-content -->
         </div>
-      </button>
-      <button type="button" class="btn btn-dark p-3 col-lg-3 col-6 ms-2" (click)="speak()">
-        <div class="flex action-style">
-          Rapeller
-          <fa-icon [icon]="facall" class="lg"></fa-icon>
+        <!-- /.info-box -->
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 btn" (click)="speak()" >
+        <div class="info-box">
+          <span class="info-box-icon bg-warning elevation-1">
+            <fa-icon [icon]="facall" class="lg"></fa-icon>
+          </span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">Rappeler</span>
+          </div>
+          <!-- /.info-box-content -->
         </div>
-      </button>
-      <button type="button" class="btn btn-light p-3 col-lg-3 col-6 ms-2">
-        <div class="flex action-style">
-          Quitter
-          <fa-icon [icon]="fadeco" class="lg"></fa-icon>
+        <!-- /.info-box -->
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 btn" (click)="updateCaisseStatus()" >
+        <div class="info-box">
+          <span class="info-box-icon bg-danger elevation-1">
+            <ng-container *ngIf="caisseStatus; else elseTemplate">
+              <fa-icon [icon]="fadeco" class="lg"></fa-icon>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <fa-icon [icon]="facon" class="lg"></fa-icon>
+            </ng-template>
+          </span>
+          <div class="info-box-content">
+            <span class="info-box-text">{{currentFree}}</span>
+          </div>
+          <!-- /.info-box-content -->
         </div>
-      </button>
-      
+        <!-- /.info-box -->
+      </div>
     </div>
 </div>
-<app-client Clients="clients"></app-client>
+<app-client [Clients]="clients"></app-client> 

@@ -1,0 +1,14 @@
+<a (click)="handleMainMenuAction()" class="nav-link" [ngClass]="{active: isMainActive || isOneOfChildrenActive}">
+    <fa-icon [icon]="menuItem.icon" size="lg" [fixedWidth]="true"></fa-icon>
+  <p>{{ menuItem.name }}</p>
+  <fa-icon *ngIf="isExpandable && menuItem.children.length > 0" [icon]="angleLeft" size="lg" [fixedWidth]="true" class="right"></fa-icon>
+  <!-- <i *ngIf="isExpandable && menuItem.children.length > 0" class="right fas fa-angle-left"></i> -->
+</a>
+<ul class="nav nav-treeview" *ngFor="let item of menuItem.children">
+  <li class="nav-item">
+    <a [routerLink]="item.path" [routerLinkActive]="'active'" class="nav-link">
+      <fa-icon [icon]="item.icon" size="lg" [fixedWidth]="true"></fa-icon>
+      <p>{{ item.name }}</p>
+    </a>
+  </li>
+</ul>

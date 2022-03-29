@@ -9,6 +9,16 @@ import { CaisseComponent } from './caisse/caisse.component';
 import { SmallBoxComponent } from './small-box/small-box.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { MainComponent } from './main/main.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MenuItemComponent } from './menu-item/menu-item.component';
+import { DataTablesModule } from 'angular-datatables';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { SuiviComponent } from './suivi/suivi.component';
+import { CardSuiviComponent } from './card-suivi/card-suivi.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +27,22 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     ClientComponent,
     CaisseComponent,
-    SmallBoxComponent
+    SmallBoxComponent,
+    MainComponent,
+    SidebarComponent,
+    MenuItemComponent,
+    LoginComponent,
+    SuiviComponent,
+    CardSuiviComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FontAwesomeModule,
     HttpClientModule,
+    DataTablesModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
     AppRoutingModule
   ],
   providers: [],

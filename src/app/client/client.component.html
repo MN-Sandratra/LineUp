@@ -1,22 +1,23 @@
-<div class="card mt-5 container">
-    <div class="card-header">Liste des clients</div>
+<div class="card mt-2 container">
+    <div class="card-header">
+        <h2 class="t-title">Liste des clients</h2>
+    <h4 class="t-date">{{date | date}}</h4>
+    </div>
     <div class="card-body">
-        <div class="row">
-            <table class="table table-responsive-sm table-hover table-outline mb-0">
+        <div class="tableFixHead">
+            <table class="table table-responsive-sm table-bordered table-striped table-hover" datatable >
                 <thead class="thead-light">
                     <tr>
                         <th class="text-center">Numero</th>
-                        <th class="text-center">Date</th>
                         <th class="text-center">Heure</th>
-                        <th class="text-center">Action</th>
+                        <th class="text-center">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let client of clients">
+                    <tr *ngFor="let client of Clients">
                         <td class="text-center">{{client.numero}}</td>
-                        <td class="text-center">{{client.date }}</td>
-                        <td class="text-center"></td>
-                        <td class="text-center">Suivant</td>
+                        <td class="text-center">{{client.date |date: 'mediumTime' }}</td>
+                        <td class="text-center">En Attente</td>
                     </tr>
                 </tbody>
             </table>
