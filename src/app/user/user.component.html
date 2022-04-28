@@ -11,7 +11,7 @@
                         <h1>Bienvenue</h1>
                         <p class="caisse">Le numero actuel</p>
                         <div class="my-number">
-                            <h1>{{info.numero}}</h1>
+                            <h1>{{currentCategoryId}} -{{info.numero}}</h1>
                         </div>
                         <p class="hour">{{date | date}}</p>
                         <p class="caisse"> Comptoire numero : {{info.Caisse}}</p>
@@ -26,10 +26,7 @@
                         <form class="mb-3 select">
                           <label for="cat" class="form-label">categorie</label>
                           <select class="form-control form-control-sm" name="cat" id="cat" [(ngModel)]="currentCategory">
-                            <option></option>
-                            <option >Caisse</option>
-                            <option >Magasin</option>
-                            <option>Trano</option>
+                            <option *ngFor="let cat of categories" value={{cat.type}}>{{cat.category}}</option>
                           </select>
                         </form>
                           

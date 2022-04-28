@@ -1,5 +1,5 @@
 export class Category {
     type?:number;
-    identifiant?:String;
+    id?:String;
     category?:String;
 }

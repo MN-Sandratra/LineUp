@@ -6,6 +6,7 @@ import { ApiManagerService } from '../services/api-manager.service';
 import { Caisse } from '../caisse';
 import {Modal} from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
+import { AffichageSocketService } from '../services/affichage-socket.service';
 
 @Component({
   selector: 'app-login',
@@ -17,11 +18,13 @@ export class LoginComponent implements OnInit {
   constructor(private fb:FormBuilder,
     private toast:ToastrService,
     private api:ApiManagerService,
+    private socket:AffichageSocketService,
     private route:Router) { }
 
   caisses:any[]=[];
   categories:any[]=[];
   modal:any;
+  mySocket:any;
   formCaisse=this.fb.group({
     category:['',Validators.required],
     caisse:['',Validators.required]
@@ -32,7 +35,9 @@ export class LoginComponent implements OnInit {
     this.getAllCategory();
     let ele=document.getElementById("login") as HTMLElement
     this.modal=new Modal(ele);
+    this.mySocket=this.socket.createSocket();
   }
+
   getifCaisseExist(){
 
   }
@@ -58,6 +63,7 @@ export class LoginComponent implements OnInit {
       data=>{
         let currentroute='/main/'+cat+"-"+num+'/dashboard'
         console.log(data);
+        this.mySocket.emit('addCaisse')
         this.route.navigate([currentroute])
       },err=>{
         console.log(err);
@@ -67,7 +73,7 @@ export class LoginComponent implements OnInit {
   }
 
   goever(){
-    let currentroute='/main/'+this.formCaisse.get('category')?.value;+"-"+this.formCaisse.get('caisse')?.value;+'/dashboard';
+    let currentroute='/main/'+this.formCaisse.get('category')?.value+"-"+this.formCaisse.get('caisse')?.value+'/dashboard';
     this.route.navigate([currentroute])
   }
   getCaisseVerrouiller(id:any,cat:any){

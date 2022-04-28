@@ -15,25 +15,17 @@
                     </div>
                     <div class="modal-body">
                       <form>
-                        <div class="pr-md-1 mt-3">
-                          <div class=" form-group">
-                            <label for="#nom"> Type </label>
-                            <input class=" form-control" placeholder="Type" type="text" 
-                            id="nom" required minlength="2"
-                            name="firstName"/>
-                            </div>
-                        </div>
                         <div class="pl-md-1 mt-3">
                           <div class=" form-group">
                             <label> Identifiant </label>
-                            <input class=" form-control" placeholder="Identifiant" type="text" name="lastName"/>
+                            <input class=" form-control" placeholder="Identifiant" type="text" name="identifiant"  [(ngModel)]="currentCategory.id"/>
                           </div>
                         </div>
                         <div class=" row">
                             <div class=" col-md-12 mt-3">
                                 <div class=" form-group">
                               <label> Categorie </label>
-                              <input class=" form-control" placeholder="Category" type="text"name="cin" />
+                              <input class=" form-control" placeholder="Category" type="text"name="category" [(ngModel)]="currentCategory.category"/>
                             </div>
                           </div>
                         </div>
@@ -45,10 +37,10 @@
                       </span>
                       <span [ngSwitch]="currentAction">
                         <span *ngSwitchCase="'Modifier'">
-                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Modifier</button>
+                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateCategory()">Modifier</button>
                         </span>
                         <span *ngSwitchCase="'Ajouter'">
-                          <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">Ajouter</button>
+                          <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" (click)="addCategory()">Ajouter</button>
                         </span>
                         <p *ngSwitchDefault>
                         </p>
@@ -67,11 +59,11 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      Voulez vous vraiment supprimer cette category <b></b>
+                      Voulez vous vraiment supprimer la category  <b>{{currentCategory.category}}</b>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Supprimer</button>
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteCategory()">Supprimer</button>
                     </div>
                   </div>
                 </div>
@@ -83,7 +75,7 @@
                   </div>
                   <div class="card-body">
                     <div class="action">
-                      <button type="button" class="btn btn-primary ml-auto" data-bs-toggle="modal" data-bs-target="#clientModal">
+                      <button type="button" class="btn btn-primary ml-auto" data-bs-toggle="modal" data-bs-target="#clientModal" (click)="ajoutCategory()">
                         <fa-icon [icon]="FaAdd"></fa-icon> Ajouter
                       </button>
                     </div>
@@ -100,13 +92,13 @@
                       <tbody>
                         <tr *ngFor="let cat of myCategory" class="text-center">
                           <td>{{cat.type}}</td>
-                          <td>{{cat.identifiant}}</td>
-                          <td>{{cat.categorie}}</td>
+                          <td>{{cat.id}}</td>
+                          <td>{{cat.category}}</td>
                           <td class="td-action text-center">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clientModal">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clientModal" (click)="modifierCategory(cat)">
                             <fa-icon [icon]="FaModif"></fa-icon>
                             </button>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteClient">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteClient" (click)="  supprimerCategory(cat)">
                             <fa-icon [icon]="FaDel"></fa-icon>
                             </button>
                           </td>

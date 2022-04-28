@@ -100,7 +100,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getClient(){
-    this.api.getAllClient(this.currentId).subscribe(
+    this.api.getAllClient(this.currentCatId+"-"+this.currentId).subscribe(
       data=>{
         this.clients=data;
       },

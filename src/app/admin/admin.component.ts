@@ -2,8 +2,13 @@ import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { data } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
+import { FileUploader } from 'ng2-file-upload';
+import { ApiManagerService } from '../services/api-manager.service';
 import { DragDropService } from '../services/drag-drop.service';
+import axios from 'axios';
 
 @Component({
   selector: 'app-admin',
@@ -11,6 +16,7 @@ import { DragDropService } from '../services/drag-drop.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  
   fileArr:any[] = [];
   imgArr:any[] = [];
   fileObj:any[] = [];
@@ -20,6 +26,7 @@ export class AdminComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
+    public api:ApiManagerService,
     private sanitizer: DomSanitizer,
     public dragdropService: DragDropService
   ) {
@@ -27,8 +34,38 @@ export class AdminComponent implements OnInit {
       avatar: [null]
     })
   }
+  file:any;
+  fileName:any
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.file=document.getElementById("uploader");
+  }
+
+  saveFile(e:any){
+    this.file=e.target.files[0];
+    this.fileName=e.target.files[0].name;
+  }
+  async uploadFile(e:any){
+    let formData=new FormData() 
+    formData.append("file",this.file);
+    formData.append("fileName",this.fileName);
+    try{
+      const res=await axios.post(
+        environment.baseUpload+"/api/upload",
+        formData,
+        {
+          onUploadProgress:(ProgressEvent:any):void =>{
+            if(ProgressEvent.lengthComputable){
+              this.progress=Math.round((ProgressEvent.loaded/ProgressEvent.total)*100);
+            }
+          }
+        }
+      )
+      console.log(res);
+    }catch(ex){
+      console.log(ex);
+    }
+  }
 
   upload(e:any) {
     const fileListAsArray = Array.from(e);

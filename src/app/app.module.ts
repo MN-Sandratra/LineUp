@@ -24,6 +24,8 @@ import { AdminComponent } from './admin/admin.component';
 import { CategoryComponent } from './category/category.component';
 import { NgxPrintModule } from 'ngx-print';
 import { DragDropDirective } from './drag-drop.directive';
+import {FileUploadModule} from 'ng2-file-upload'
+
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { DragDropDirective } from './drag-drop.directive';
     DataTablesModule,
     ReactiveFormsModule,
     NgxPrintModule,
+    FileUploadModule,
     ToastrModule.forRoot(),
     AppRoutingModule
   ],

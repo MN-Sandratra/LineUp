@@ -15,7 +15,7 @@ export class CategoryComponent implements OnInit {
   FaAdd=faAdd;
   FaDel=faTrash;
   myCategory:any[]=[];
-  currentCategory:any;
+  currentCategory:Category=new Category();
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   dtElement:DataTableDirective | undefined;
@@ -54,23 +54,47 @@ export class CategoryComponent implements OnInit {
       pageLength: 5,
       processing: true
     };
+    this.getAllCategory();
   }
   ngAfterViewInit(): void {
     setTimeout(()=>this.dtTrigger.next(''),200);
   }
+
+  getAllCategory(){
+    this.api.getCathegory().subscribe(
+      data=>{
+        this.myCategory=data.content;
+        console.log(data);
+      },err=>{
+        console.log(err);
+      }
+    )
+  }
+
   getCategoryById(id:number){
-    this.api.getCathegoryById(id).subscribe(
+    this.api.getCategoryById(id).subscribe(
       data=>{
         this.currentCategory=data;
+        console.log(this.currentCategory);
       },err=>{
         console.error("Une erreur s'est produite");       
       }
     )
   }
+  updateCategory(){
+    this.api.modifCategory(this.currentCategory).subscribe(
+      data=>{
+        this.getAllCategory()
+        console.log(data);
+      },err=>{
+        console.log(err);
+      }
+    )
+  }
 
-  modifierCategory(client:any){
+  modifierCategory(category:any){
     this.currentAction="Modifier";
-    this.getCategoryById(client.id);
+    this.getCategoryById(category.type);
   }
   ajoutCategory(){
     this.currentAction="Ajouter";
@@ -80,9 +104,29 @@ export class CategoryComponent implements OnInit {
   initialistaion() {
     this.currentCategory=new Category();
   }
-  supprimerCategory(client:any){
-    this.getCategoryById(client.id);
+  supprimerCategory(cat:any){
+    this.getCategoryById(cat.type);
+  }
+  deleteCategory(){
+    this.api.delCat(this.currentCategory.type).subscribe(
+      data=>{
+        this.getAllCategory()
+        console.log(data);
+      },err=>{
+        console.log(err);
+      }
+    )
   }
 
+  addCategory(){
+    this.api.addCategory(this.currentCategory).subscribe(
+      data=>{
+        this.getAllCategory()
+        console.log(data);
+      },err=>{
+        console.log(err);
+      }
+    )
+  }
 
 }

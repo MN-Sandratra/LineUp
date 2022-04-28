@@ -29,10 +29,6 @@ export class SuiviComponent implements OnInit {
       console.log(data);
       this.speak(data)
     })
-    this.Mysocket.on('videoO',(video:any)=>{
-      this.video=video;
-      console.log(this.video);
-    })
   }
 
   caisses:Caisse[]=[];

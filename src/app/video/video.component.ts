@@ -29,7 +29,7 @@ export class VideoComponent implements OnInit {
     this.apivideo.getvideo().subscribe(
       data=>{
         this.myvideo=data;
-        this.myvideo=this.video.map((x:any)=>environment.baseUrl+x);
+        this.myvideo=this.video.map((x:any)=>environment.baseUrl+x.link);
         this.videoPlay(0);
       },err=>{
         console.log("tsy azo fona ehh");
