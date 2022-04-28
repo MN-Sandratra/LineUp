@@ -1,13 +1,17 @@
 <div class="d-container container">
   <div class="row">
-    <app-small-box class="col-lg-4 col-6" Description="Caisse" [Valeur]="currentId"></app-small-box>
-    <app-small-box class="col-lg-4 col-6" Description="Numero Actuel" [Valeur]="clients[0] ? clients[0].numero : 0" Style="bg-success"></app-small-box>
-    <app-small-box class="col-lg-4 col-6" Description="Personne(s) en Attente" [Valeur]="clients.length" Style="bg-warning"></app-small-box>
+    <app-small-box class="col-lg-4 col-6" [Description]="currentCat" [Valeur]="currentId"></app-small-box>
+    <app-small-box class="col-lg-4 col-6" Description="Numero Actuel" [Valeur]="clients[0] ? clients[0].numero : 0"
+      Style="bg-success"></app-small-box>
+    <app-small-box class="col-lg-4 col-6" Description="Personne(s) en Attente" [Valeur]="clients.length"
+      Style="bg-warning"></app-small-box>
     <!--apina sauter -->
     <div class="row action">
-      <div class="col-12 col-sm-6 col-md-4 btn" (click)="getNextClient(1)" >
+      <div class="col-12 col-sm-6 col-md-4 btn" (click)="getNextClient(1)">
         <div class="info-box">
-          <span class="info-box-icon bg-info elevation-1"><fa-icon [icon]="fanext" class="lg"></fa-icon></span>
+          <span class="info-box-icon bg-info elevation-1">
+            <fa-icon [icon]="fanext" class="lg"></fa-icon>
+          </span>
 
           <div class="info-box-content">
             <span class="info-box-text">Suivant</span>
@@ -17,7 +21,7 @@
         <!-- /.info-box -->
       </div>
 
-      <div class="col-12 col-sm-6 col-md-4 btn" (click)="speak()" >
+      <div class="col-12 col-sm-6 col-md-4 btn" (click)="sendSpeak()">
         <div class="info-box">
           <span class="info-box-icon bg-warning elevation-1">
             <fa-icon [icon]="facall" class="lg"></fa-icon>
@@ -31,7 +35,7 @@
         <!-- /.info-box -->
       </div>
 
-      <div class="col-12 col-sm-6 col-md-4 btn" (click)="updateCaisseStatus()" >
+      <div class="col-12 col-sm-6 col-md-4 btn" (click)="updateCaisseStatus()">
         <div class="info-box">
           <span class="info-box-icon bg-danger elevation-1">
             <ng-container *ngIf="caisseStatus; else elseTemplate">
@@ -49,5 +53,5 @@
         <!-- /.info-box -->
       </div>
     </div>
-</div>
-<app-client [Clients]="clients"></app-client> 
+  </div>
+  <app-client [Clients]="clients"></app-client>

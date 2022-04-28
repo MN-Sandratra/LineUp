@@ -1,0 +1,124 @@
+<div class="category">
+<div class="container pt-4">
+
+    <div class="card">
+      <div class="card-body">
+        
+          <div>
+              <!-- Modal -->
+              <div class="modal fade" id="clientModal" tabindex="-1" aria-labelledby="ModalClient" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">{{currentAction}} une category</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="pr-md-1 mt-3">
+                          <div class=" form-group">
+                            <label for="#nom"> Type </label>
+                            <input class=" form-control" placeholder="Type" type="text" 
+                            id="nom" required minlength="2"
+                            name="firstName"/>
+                            </div>
+                        </div>
+                        <div class="pl-md-1 mt-3">
+                          <div class=" form-group">
+                            <label> Identifiant </label>
+                            <input class=" form-control" placeholder="Identifiant" type="text" name="lastName"/>
+                          </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-12 mt-3">
+                                <div class=" form-group">
+                              <label> Categorie </label>
+                              <input class=" form-control" placeholder="Category" type="text"name="cin" />
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <span>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                      </span>
+                      <span [ngSwitch]="currentAction">
+                        <span *ngSwitchCase="'Modifier'">
+                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Modifier</button>
+                        </span>
+                        <span *ngSwitchCase="'Ajouter'">
+                          <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">Ajouter</button>
+                        </span>
+                        <p *ngSwitchDefault>
+                        </p>
+                      </span>  
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <!-- Modal Delete-->
+              <div class="modal fade" id="deleteClient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Supprimer la category</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      Voulez vous vraiment supprimer cette category <b></b>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Supprimer</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="tableau">
+                  <div class="t-header">
+                    <h1>Categorie</h1>
+                  </div>
+                  <div class="card-body">
+                    <div class="action">
+                      <button type="button" class="btn btn-primary ml-auto" data-bs-toggle="modal" data-bs-target="#clientModal">
+                        <fa-icon [icon]="FaAdd"></fa-icon> Ajouter
+                      </button>
+                    </div>
+                    <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions"
+                      [dtTrigger]="dtTrigger">
+                      <thead>
+                        <tr class="text-center">
+                          <th>Type</th>
+                          <th>Identifiant</th>
+                          <th>Categorie</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let cat of myCategory" class="text-center">
+                          <td>{{cat.type}}</td>
+                          <td>{{cat.identifiant}}</td>
+                          <td>{{cat.categorie}}</td>
+                          <td class="td-action text-center">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clientModal">
+                            <fa-icon [icon]="FaModif"></fa-icon>
+                            </button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteClient">
+                            <fa-icon [icon]="FaDel"></fa-icon>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+            
+                </div>
+              </div>
+            </div>      
+      </div>
+    </div>
+</div>
+</div>

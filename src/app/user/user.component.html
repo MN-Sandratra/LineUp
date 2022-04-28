@@ -5,7 +5,7 @@
             <div class="row">
               <div class="col-md-8 mx-auto">
                 <div class="card-group">
-                  <div class="card p-4">
+                  <div class="card p-4" id="print-section">
                     <div class="card-body">
                       <div class="text-center">
                         <h1>Bienvenue</h1>
@@ -14,7 +14,7 @@
                             <h1>{{info.numero}}</h1>
                         </div>
                         <p class="hour">{{date | date}}</p>
-                        <p class="caisse"> caisse numero : {{info.Caisse}}</p>
+                        <p class="caisse"> Comptoire numero : {{info.Caisse}}</p>
                     </div>
                     </div>
                   </div>
@@ -23,7 +23,18 @@
                       <div>
                         <h2>Information</h2>
                         <p>Retirer un ticket pour acceder a la liste d'attente a un de nos caisse,s'il vous plait attendez bien sagement votre tour</p>
-                        <button type="button" class="btn btn-primary active mt-3" (click)="getTicket()">Retirer un ticket</button>
+                        <form class="mb-3 select">
+                          <label for="cat" class="form-label">categorie</label>
+                          <select class="form-control form-control-sm" name="cat" id="cat" [(ngModel)]="currentCategory">
+                            <option></option>
+                            <option >Caisse</option>
+                            <option >Magasin</option>
+                            <option>Trano</option>
+                          </select>
+                        </form>
+                          
+                        <button type="button" class="btn btn-primary active mt-3" (click)="getTicket()" for="#print">Retirer un ticket</button>
+                        <button printSectionId="print-section" [useExistingCss]="true" ngxPrint id="print" [ngStyle]="{'display': 'none'}">print</button>
                       </div>
                     </div>
                   </div>

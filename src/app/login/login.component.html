@@ -8,9 +8,20 @@
             </div>
 
             <form class="login100-form validate-form" [formGroup]="formCaisse" (ngSubmit)="onSubmit()">
-                <div class="wrap-input100 validate-input m-b-26" [class.is-invalid]="formCaisse.get('caisse')?.invalid &&
+                <div class="wrap-input100 validate-input m-b-26 " [class.is-invalid]="formCaisse.get('category')?.invalid &&
+                formCaisse.get('category')?.touched ">
+                  <span for="#cath" class="label-input100">Categorie</span>
+                  <select class="form-control input100 select" name="" id="cath" formControlName="category">
+                    <option *ngFor="let cat of categories" value={{cat.type}}>{{cat.category}}</option>
+                  </select>
+                </div>
+                <small class="is-invalid error" [class.d-none]="formCaisse.get('category')?.valid ||
+                  formCaisse.get('category')?.untouched ">Veuillez selectioner une category</small>
+                
+
+                <div class="wrap-input100 validate-input m-b-26 mt-2" [class.is-invalid]="formCaisse.get('caisse')?.invalid &&
                 formCaisse.get('caisse')?.touched ">
-                    <span class="label-input100">Caisse</span>
+                    <span class="label-input100">Numero</span>
                     <input  formControlName="caisse" class="input100" type="number" name="caisse" placeholder="Entrer votre numero de caisse">
                     <span class="focus-input100" [class.is-invalid]="formCaisse.get('caisse')?.invalid &&
                     formCaisse.get('caisse')?.touched "></span>
@@ -26,3 +37,29 @@
         </div>
     </div>
 </div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modelId">
+  Launch
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Attention</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Ce compte existe deja.Voulez vous l'utilisez?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+                <button type="button" class="btn btn-primary" (click)="goever()">Continuer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

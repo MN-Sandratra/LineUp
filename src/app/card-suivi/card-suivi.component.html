@@ -1,9 +1,11 @@
-<div class="card text-left">
-  <div class="card-body">
-    <h4 class="card-title text-center">Caisse numero {{caisse.caisse}} </h4>
-    <div class="suivi-body">
-        <p class="caisse_number">{{caisse.content[0]? caisse.content[0].numero:0}}</p>
-        <p class="caisse_next">Suivant : {{caisse.content[1]? caisse.content[1].numero:0}}</p>
+<div class="suivi container-fluid card">
+  <div class="row">
+    <div class="col number">
+      <p class="caisse_number">{{caisse.id}}-{{caisse.content[0]? caisse.content[0].numero:0}}</p>
+    </div>
+    <div class="col guichet">
+      <p>{{caisse.category}}</p>
+      <p>{{caisse.caisse}}</p>
     </div>
   </div>
 </div>

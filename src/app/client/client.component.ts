@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
-import { ApiManagerService } from '../api-manager.service';
+import { ApiManagerService } from '../services/api-manager.service';
 
 @Component({
   selector: 'app-client',

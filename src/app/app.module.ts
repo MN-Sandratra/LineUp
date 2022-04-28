@@ -15,10 +15,15 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import { DataTablesModule } from 'angular-datatables';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SuiviComponent } from './suivi/suivi.component';
 import { CardSuiviComponent } from './card-suivi/card-suivi.component';
+import { VideoComponent } from './video/video.component';
+import { AdminComponent } from './admin/admin.component';
+import { CategoryComponent } from './category/category.component';
+import { NgxPrintModule } from 'ngx-print';
+import { DragDropDirective } from './drag-drop.directive';
 
 @NgModule({
   declarations: [
@@ -33,15 +38,21 @@ import { CardSuiviComponent } from './card-suivi/card-suivi.component';
     MenuItemComponent,
     LoginComponent,
     SuiviComponent,
-    CardSuiviComponent
+    CardSuiviComponent,
+    VideoComponent,
+    AdminComponent,
+    CategoryComponent,
+    DragDropDirective
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     FontAwesomeModule,
     HttpClientModule,
     DataTablesModule,
     ReactiveFormsModule,
+    NgxPrintModule,
     ToastrModule.forRoot(),
     AppRoutingModule
   ],

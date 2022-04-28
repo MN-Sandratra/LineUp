@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiManagerService } from '../api-manager.service';
+import { AffichageSocketService } from '../services/affichage-socket.service';
+import { ApiManagerService } from '../services/api-manager.service';
 import { Caisse } from '../caisse';
+import TTS from 'text-to-speech-offline';
+import { VideoplayerService } from '../services/videoplayer.service';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-suivi',
@@ -9,21 +13,52 @@ import { Caisse } from '../caisse';
 })
 export class SuiviComponent implements OnInit {
 
-  constructor(private api:ApiManagerService) { }
+  private Mysocket:any;
+  video:any;
+  today=Date.now();
+  PubMessage:string="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum molestias ipsam accusamus tempora architecto fugiat, eos incidunt deserunt assumenda. Expedita deleniti dolorum velit illum libero. Recusandae maxime alias fugit repudiandae!";
+  constructor(private api:ApiManagerService,private socket:AffichageSocketService,private apiVideo:VideoplayerService) { }
 
   ngOnInit(): void {
+    setInterval(()=>this.today=Date.now(),1000);
     this.getAllCaisse();
+    this.getVideo();
     setInterval(()=>this.getAllCaisse(),10000);
+    this.Mysocket=this.socket.createSocket();
+    this.Mysocket.on('speakT',(data:any)=>{
+      console.log(data);
+      this.speak(data)
+    })
+    this.Mysocket.on('videoO',(video:any)=>{
+      this.video=video;
+      console.log(this.video);
+    })
   }
+
   caisses:Caisse[]=[];
+  getVideo(){
+    this.apiVideo.getvideo().subscribe(
+      data=>{
+        this.video=data;
+        console.log(data);
+      },err=>{
+        console.log("tsy azo ohh");
+      }
+    )
+  }
   getAllCaisse(){
     this.api.getAllcaisser().subscribe(
       data=>{
         this.caisses=data;
-      },err=>{
+      },(err: any)=>{
         console.log(err);
       }
     )
+  }
+
+  speak(data:any){
+    let texttospeak:string="Le client ayant le numero "+data.numero +"est attendu au comptoire "+data.category+" numero "+ data.currentId;
+    TTS(texttospeak,'fr-FR')
   }
 
 }

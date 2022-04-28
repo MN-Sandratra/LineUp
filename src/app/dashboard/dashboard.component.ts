@@ -3,8 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { faArrowRight, faLock, faLockOpen, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import TTS from 'text-to-speech-offline';
-import { ApiManagerService } from '../api-manager.service';
+import { ApiManagerService } from '../services/api-manager.service';
 import { Caisse } from '../caisse';
+import { CaisseSocketService } from '../services/caisse-socket.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,12 +19,15 @@ export class DashboardComponent implements OnInit {
   facall=faVolumeHigh;
   fadeco=faLock;
   facon=faLockOpen;
+  categories:any[]=[];
   currentId!:number;
+  currentCatId!:number;
+  currentCat!:String ;
   currentFree="Verrouiller la caisse";
   caisseStatus=true;
 
   constructor(private api:ApiManagerService ,private route:ActivatedRoute,private toast:ToastrService
-    ,private myroute:Router) { }
+    ,private myroute:Router,private caisseSocket:CaisseSocketService) { }
 
   clients:any[]=[];
   ngOnInit(): void {
@@ -31,25 +35,60 @@ export class DashboardComponent implements OnInit {
     this.getClient();
     this.getdataSecond();
     this.getStatus();
+    this.caisseSocket.createSocket();
   }
-  getcurrentId(){
+  async getcurrentId(){
     let id=this.route.parent?.snapshot.paramMap.get('id');
     console.log(id);
-    if(id){
-      this.currentId=parseInt(""+this.route.parent?.snapshot.paramMap.get('id'));
+    let ids=id?.split('-');
+    this.getcat();
+    if(ids){
+      this.currentId=parseInt(""+ids[1]);
+      this.currentCatId=parseInt(""+ids[0]);
     }
+  }
+  getcat(){
+    this.api.getCathegory().subscribe(
+      data=>{
+        this.categories=data.content;
+        let id=this.route.parent?.snapshot.paramMap.get('id');
+        let ids=id?.split('-');
+        if(ids){
+          this.currentId=parseInt(""+ids[1]);
+          this.currentCatId=parseInt(""+ids[0]);
+        }
+
+        let cat=this.categories.filter((x:any)=>x.type===this.currentCatId)
+        this.currentCat=cat[0].category
+        console.log(this.currentCat);
+      },err=>{
+        console.log(err);
+      }
+    )
   }
   speak(){
     let texttospeak:string="Le client ayant le numero "+this.clients[0].numero +"est attendu a la caisse numero"+this.currentId;
     TTS(texttospeak,'fr-FR')
   }
 
+  sendSpeak(){
+    let cat=this.categories.filter(x=>x.type==this.currentCatId)
+    let data={
+      category:cat[0].category,
+      numero:this.clients[0].numero,
+      currentId:this.currentId,
+    }
+    this.caisseSocket.sendSpeak(data);
+  }
+
   getNextClient(id:number){
-    this.api.getNextClient(this.currentId).subscribe(
+    let fullId=this.currentCatId+'-'+this.currentId;
+    this.api.getNextClient(fullId).subscribe(
       data=>{
         this.getClient();
         setTimeout(() => {
-          this.speak();
+          //this.speak();
+          this.sendSpeak();
         },500 );
       },err=>{
         console.log(err);

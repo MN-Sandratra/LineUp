@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faTachometerAlt,faUsersCog, faUsers, faCertificate, faHome, faLifeRing, faUserFriends, faShieldAlt, faUserNinja, faCashRegister} from '@fortawesome/free-solid-svg-icons'
+import { ActivatedRoute, Router } from '@angular/router';
+import { faTachometerAlt,faUsersCog, faUsers, faCertificate, faHome, faLifeRing, faUserFriends, faShieldAlt, faUserNinja, faCashRegister, faList} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-sidebar',
@@ -10,14 +11,33 @@ export class SidebarComponent implements OnInit {
 
   @Input() ncaisse: any;
   myadmin=faUserNinja;
+  type:any;
   myUser = {
     name: 'Admin',
     picture: ''
   }
   public menu = MENU;
-  constructor() { }
+  public menuAdmin=MENUADMIN;
+  currentRoute:any;
+  
+  constructor(private route:Router) { }
 
   ngOnInit(): void {
+    this.getCurrentRoute();
+  }
+
+  getCurrentRoute(){
+    this.currentRoute=this.route.url;
+    console.log(this.currentRoute);
+    let link=this.currentRoute.split('/');
+    this.currentRoute=link[2];
+    if(this.currentRoute=='admin'){
+      this.menu=MENUADMIN
+      this.type="Admin"
+      this.ncaisse=''
+    }else{
+      this.menu=MENU
+    }
   }
 
 }
@@ -32,4 +52,17 @@ export const MENU = [
     icon:faCashRegister,
     path: ['./caisse']
   }
+];
+
+export const MENUADMIN=[
+  {
+    name: 'Publicite',
+    icon:faTachometerAlt,
+    path: ['./pub']
+  },
+  {
+    name: 'Categories',
+    icon:faList,
+    path: ['./category']
+  },
 ];

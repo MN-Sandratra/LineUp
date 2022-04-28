@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { data } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
-import { ApiManagerService } from '../api-manager.service';
+import { ApiManagerService } from '../services/api-manager.service';
+import { NgxPrintModule } from 'ngx-print';
 
 @Component({
   selector: 'app-user',
@@ -12,6 +13,7 @@ export class UserComponent implements OnInit {
 
   date:Date=new Date();
   caisses:any[]=[];
+  currentCategory:any="";
   info:any={
     Caisse:0,
     numero:0,
@@ -24,6 +26,13 @@ export class UserComponent implements OnInit {
   }
 
   getTicket(){
+    //print element
+    if(this.currentCategory==""){
+      this.toast.error("Veuillez selectioner un category","Attention")
+    }else{
+    let print=document.getElementById("print");
+    print?.click();
+
     this.api.TakeNumber().subscribe(
       data=>{
         this.getAllcaisse();
@@ -32,6 +41,7 @@ export class UserComponent implements OnInit {
         console.log(err);
       }
     )
+  }
   }
    
   getAllcaisse(){

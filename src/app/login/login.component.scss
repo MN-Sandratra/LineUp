@@ -283,6 +283,9 @@
     pointer-events: none;
   }
   
+  select{
+    height: 30px!important;
+  }
   .focus-input100::before {
     content: "";
     display: block;
@@ -501,6 +504,4 @@
       opacity: 1;
     }
   }
-  
-  
-  
+  @import "~bootstrap/dist/css/bootstrap.min.css";

@@ -1,0 +1,13 @@
+.full-screen{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(100, 99, 99);
+    overflow: hidden;
+    .video{
+        max-width: 100%;
+        height: auto;
+        display: block;
+       object-fit: cover;
+    }
+}

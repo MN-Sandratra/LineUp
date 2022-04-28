@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { data } from 'jquery';
-import { ApiManagerService } from '../api-manager.service';
+import { ApiManagerService } from '../services/api-manager.service';
 
 @Component({
   selector: 'app-main',

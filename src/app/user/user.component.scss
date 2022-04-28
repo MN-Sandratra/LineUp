@@ -35,10 +35,11 @@
     padding: 10px 30px;
     border-radius: 20px;
     font-family:Poppins-Regular;
-}
 
-.btn:hover{
-    background-color: #11556b;
+    &:hover{
+        background-color: #11556b !important;
+        transition: 200ms;
+    }
 }
 
 .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
@@ -49,4 +50,14 @@
 .bg-primary-mine{
     border-color: #187da0;
     background-color: #20a8d8 ;
+}
+.select{
+    display: flex;
+    flex-direction: column;
+    text-align:left ;
+
+    label{
+        font-weight: 500;
+        font-size: medium;
+    }
 }

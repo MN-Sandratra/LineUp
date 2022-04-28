@@ -1,8 +1,31 @@
 <div class="limiter">
-    <div class="d-container container" >
-        <div class="row" >
-            <app-card-suivi class="col-lg-4 col-6" *ngFor="let caisse of caisses" 
-            [caisse]="caisse" ></app-card-suivi>
+    <div class="d-container container-fluid" >
+        <div class="gridrow">
+                <div class="principal">
+                    <div class="header">
+                        Nom societe
+                    </div>
+                    <div class="content">
+                        <app-video [video]="video"></app-video>
+                    </div>
+                    <div class="footer">
+                        <marquee behavior="" direction="">
+                            {{PubMessage}}
+                        </marquee>
+                    </div>
+                </div>
+            <div class="guichet-list">
+                <div class="appel">
+                    <p>Appel</p> 
+                </div>
+                <div class="content">
+                    <app-card-suivi class="col-lg-4 col-6" *ngFor="let caisse of caisses" 
+                [caisse]="caisse" ></app-card-suivi>
+                </div>
+                <div class="date">
+                    <p>{{today | date:"HH:mm"}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
