@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { faArrowRight, faLock, faLockOpen, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import TTS from 'text-to-speech-offline';
+import { Caisse } from '../caisse/caisse';
 import { ApiManagerService } from '../services/api-manager.service';
-import { Caisse } from '../caisse';
 import { CaisseSocketService } from '../services/caisse-socket.service';
 
 @Component({

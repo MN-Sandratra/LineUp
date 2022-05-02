@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiManagerService } from '../services/api-manager.service';
-import { Caisse } from '../caisse';
+import { Caisse } from '../caisse/caisse';
 import {Modal} from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { AffichageSocketService } from '../services/affichage-socket.service';

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from'@angular/common/http'
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Annonce } from '../annonce/annonce';
 
 @Injectable({
   providedIn: 'root'
@@ -58,13 +59,27 @@ export class ApiManagerService {
     return this.http.get(this.baseUrl+"/api/deconnexion/"+id);
   }
 
-  addCategory(cat:any){
+  addCategory(cat:any):Observable<any>{
     return this.http.post(this.baseUrl+"/api/addCat",cat);
   }
-  modifCategory(cat:any){
+  modifCategory(cat:any):Observable<any>{
     return this.http.post(this.baseUrl+"/api/modifCat",cat);
   }
-  delCat(type:any){
+  delCat(type:any):Observable<any>{
     return this.http.get(this.baseUrl+"/api/delCat/"+type);
   }
+  addAnnonce(annonce:Annonce):Observable<any>{
+    return this.http.post(this.baseUrl+'/api/addAnnonce/',annonce);
+  }
+
+  getAnnonce():Observable<any>{
+    return this.http.get(this.baseUrl+'/api/annonce/');
+  }
+  modifyAnnonce(annonce:Annonce):Observable<any>{
+    return this.http.post(this.baseUrl+'/api/editAnnonce/',annonce);
+  }
+  delAnnonce(id:any){
+    return this.http.get(this.baseUrl+'/api/delAnnonce/'+id);
+  }
+
 }

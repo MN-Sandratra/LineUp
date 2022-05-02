@@ -35,17 +35,32 @@ body {
     text-align: center;
     padding-top: 130px;
     color: #a0a1a2;
+    font-family: Poppins-Regular;
+}
+.content{
+    padding-top:5px ;
+    padding-bottom: 5px;
+    height: 100%;
+}
+.mybutton{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
 }
 
 .image-list {
     display: flex;
-    width: 100%;
     background: #C2DFFC;
-    border: 1px solid;
+    margin: 6px 12px;
     border-radius: 3px;
     padding: 10px 10px 10px 15px;
     align-items: center;
     margin-bottom: 10px;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+
+    
 }
 
 .image-list p {
@@ -55,8 +70,9 @@ body {
     display: inline-block;
     position: relative;
     top: -2px;
-    color: #150938;
+    font-family: Poppins-Regular;
     font-size: 14px;
+    font-weight: 500;
 }
 
 .message {

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
+import { AnnonceComponent } from './annonce/annonce.component';
 import { CategoryComponent } from './category/category.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
   ]},
   {path:"main",component:MainComponent,
     children:[
-      {path:'admin/pub',component:AdminComponent},
+      {path:'admin/video',component:AdminComponent},
+      {path:'admin/annonce',component:AnnonceComponent},
       {path:'admin/category',component:CategoryComponent}
     ]},
   {path:'login',component:LoginComponent},

@@ -1,0 +1,106 @@
+<div class="category">
+    <div class="container pt-4">
+    
+        <div class="card">
+          <div class="card-body">
+            
+              <div>
+                  <!-- Modal -->
+                  <div class="modal fade" id="clientModal" tabindex="-1" aria-labelledby="ModalClient" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">{{currentAction}} une annonce</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                            <div class="pl-md-1 mt-3">
+                            <div class="mb-3">
+                              <label for="" class="form-label">Annonce</label>
+                              <textarea class="form-control" name="txt" id="" rows="3" [(ngModel)]="currentAnnonce.txt"></textarea>
+                            </div>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <span>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                          </span>
+                          <span [ngSwitch]="currentAction">
+                            <span *ngSwitchCase="'Modifier'">
+                              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateAnnonce()">Modifier</button>
+                            </span>
+                            <span *ngSwitchCase="'Ajouter'">
+                              <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" (click)="addAnnonce()">Ajouter</button>
+                            </span>
+                            <p *ngSwitchDefault>
+                            </p>
+                          </span>  
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <!-- Modal Delete-->
+                  <div class="modal fade" id="deleteClient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Supprimer l'annonce</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Voulez vous vraiment supprimer l'annonce  <b>{{currentAnnonce.id}}</b>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteAnnonce()">Supprimer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container">
+                    <div class="tableau">
+                      <div class="t-header">
+                        <h1>Annonce</h1>
+                      </div>
+                      <div class="card-body">
+                        <div class="action">
+                          <button type="button" class="btn btn-primary ml-auto" data-bs-toggle="modal" data-bs-target="#clientModal" (click)="ajoutAnnonce()">
+                            <fa-icon [icon]="FaAdd"></fa-icon> Ajouter
+                          </button>
+                        </div>
+                        <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions"
+                          [dtTrigger]="dtTrigger">
+                          <thead>
+                            <tr class="text-center">
+                                <th>Id</th>
+                              <th>Annonce</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let cat of myAnnonce" class="text-center">
+                              <td>{{cat.id}}</td>
+                              <td>{{cat.txt}}</td>
+                              <td class="td-action text-center">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clientModal" (click)="modifierAnnonce(cat)">
+                                <fa-icon [icon]="FaModif"></fa-icon>
+                                </button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteClient" (click)="  supprimerAnnonce(cat)">
+                                <fa-icon [icon]="FaDel"></fa-icon>
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                
+                    </div>
+                  </div>
+                </div>      
+          </div>
+        </div>
+    </div>
+    </div>

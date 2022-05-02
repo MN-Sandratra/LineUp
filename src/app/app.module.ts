@@ -24,7 +24,8 @@ import { AdminComponent } from './admin/admin.component';
 import { CategoryComponent } from './category/category.component';
 import { NgxPrintModule } from 'ngx-print';
 import { DragDropDirective } from './drag-drop.directive';
-import {FileUploadModule} from 'ng2-file-upload'
+import {FileUploadModule} from 'ng2-file-upload';
+import { AnnonceComponent } from './annonce/annonce.component'
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import {FileUploadModule} from 'ng2-file-upload'
     VideoComponent,
     AdminComponent,
     CategoryComponent,
-    DragDropDirective
+    DragDropDirective,
+    AnnonceComponent
   ],
   imports: [
     BrowserModule,

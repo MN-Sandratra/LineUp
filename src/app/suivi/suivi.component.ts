@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AffichageSocketService } from '../services/affichage-socket.service';
 import { ApiManagerService } from '../services/api-manager.service';
-import { Caisse } from '../caisse';
+import { Caisse } from '../caisse/caisse';
 import TTS from 'text-to-speech-offline';
 import { VideoplayerService } from '../services/videoplayer.service';
 import { data } from 'jquery';
+import { Annonce } from '../annonce/annonce';
 
 @Component({
   selector: 'app-suivi',
@@ -16,6 +17,7 @@ export class SuiviComponent implements OnInit {
   private Mysocket:any;
   video:any;
   today=Date.now();
+  Annonce:Annonce[]=[];
   PubMessage:string="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum molestias ipsam accusamus tempora architecto fugiat, eos incidunt deserunt assumenda. Expedita deleniti dolorum velit illum libero. Recusandae maxime alias fugit repudiandae!";
   constructor(private api:ApiManagerService,private socket:AffichageSocketService,private apiVideo:VideoplayerService) { }
 
@@ -29,6 +31,7 @@ export class SuiviComponent implements OnInit {
       console.log(data);
       this.speak(data)
     })
+    this.getAllAnnonce();
   }
 
   caisses:Caisse[]=[];
@@ -48,6 +51,20 @@ export class SuiviComponent implements OnInit {
         this.caisses=data;
       },(err: any)=>{
         console.log(err);
+      }
+    )
+  }
+
+  getAllAnnonce(){
+    this.api.getAnnonce().subscribe(
+      data=>{
+        this.Annonce=data
+        this.PubMessage="";
+        this.Annonce.forEach((x:Annonce)=>{
+          this.PubMessage+=x.txt+", "
+        })
+      },err=>{
+        console.log();
       }
     )
   }

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faTachometerAlt,faUsersCog, faUsers, faCertificate, faHome, faLifeRing, faUserFriends, faShieldAlt, faUserNinja, faCashRegister, faList} from '@fortawesome/free-solid-svg-icons'
+import { faTachometerAlt,faUsersCog, faUsers, faCertificate, faHome, faLifeRing, faUserFriends, faShieldAlt, faUserNinja, faCashRegister, faList, faVideo} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-sidebar',
@@ -56,13 +56,18 @@ export const MENU = [
 
 export const MENUADMIN=[
   {
-    name: 'Publicite',
-    icon:faTachometerAlt,
-    path: ['./pub']
-  },
-  {
     name: 'Categories',
     icon:faList,
     path: ['./category']
   },
+  {
+    name: 'Video',
+    icon:faVideo,
+    path: ['./pub']
+  },
+  {
+    name: 'Annonce',
+    icon:faTachometerAlt,
+    path: ['./pub']
+  }
 ];

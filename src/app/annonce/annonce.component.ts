@@ -2,20 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { faAdd, faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
-import { Category } from '../category/category';
 import { ApiManagerService } from '../services/api-manager.service';
+import { Annonce } from './annonce';
 
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  selector: 'app-annonce',
+  templateUrl: './annonce.component.html',
+  styleUrls: ['./annonce.component.scss']
 })
-export class CategoryComponent implements OnInit {
+export class AnnonceComponent implements OnInit {
   FaModif=faPencil;
   FaAdd=faAdd;
   FaDel=faTrash;
-  myCategory:any[]=[];
-  currentCategory:Category=new Category();
+  myAnnonce:any[]=[];
+  currentAnnonce:Annonce=new Annonce();
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   dtElement:DataTableDirective | undefined;
@@ -54,16 +54,16 @@ export class CategoryComponent implements OnInit {
       pageLength: 5,
       processing: true
     };
-    this.getAllCategory();
+    this.getAllAnnonce();
   }
   ngAfterViewInit(): void {
     setTimeout(()=>this.dtTrigger.next(''),200);
   }
 
-  getAllCategory(){
-    this.api.getCathegory().subscribe(
+  getAllAnnonce(){
+    this.api.getAnnonce().subscribe(
       data=>{
-        this.myCategory=data.content;
+        this.myAnnonce=data;
         console.log(data);
       },err=>{
         console.log(err);
@@ -74,17 +74,17 @@ export class CategoryComponent implements OnInit {
   getCategoryById(id:number){
     this.api.getCategoryById(id).subscribe(
       data=>{
-        this.currentCategory=data;
-        console.log(this.currentCategory);
+        this.currentAnnonce=data;
+        console.log(this.currentAnnonce);
       },err=>{
         console.error("Une erreur s'est produite");       
       }
     )
   }
-  updateCategory(){
-    this.api.modifCategory(this.currentCategory).subscribe(
+  updateAnnonce(){
+    this.api.modifyAnnonce(this.currentAnnonce).subscribe(
       data=>{
-        this.getAllCategory()
+        this.getAllAnnonce()
         console.log(data);
       },err=>{
         console.log(err);
@@ -92,25 +92,25 @@ export class CategoryComponent implements OnInit {
     )
   }
 
-  modifierCategory(category:any){
+  modifierAnnonce(annonce:any){
     this.currentAction="Modifier";
-    this.getCategoryById(category.type);
+    this.currentAnnonce=annonce;
   }
-  ajoutCategory(){
+  ajoutAnnonce(){
     this.currentAction="Ajouter";
-    this.currentCategory=new Category();
+    this.currentAnnonce=new Annonce();
   }
 
   initialistaion() {
-    this.currentCategory=new Category();
+    this.currentAnnonce=new Annonce();
   }
-  supprimerCategory(cat:any){
-    this.getCategoryById(cat.type);
+  supprimerAnnonce(cat:any){
+    this.currentAnnonce=cat;
   }
-  deleteCategory(){
-    this.api.delCat(this.currentCategory.type).subscribe(
+  deleteAnnonce(){
+    this.api.delAnnonce(this.currentAnnonce.id).subscribe(
       data=>{
-        this.getAllCategory()
+        this.getAllAnnonce()
         console.log(data);
       },err=>{
         console.log(err);
@@ -118,15 +118,16 @@ export class CategoryComponent implements OnInit {
     )
   }
 
-  addCategory(){
-    this.api.addCategory(this.currentCategory).subscribe(
+  addAnnonce(){
+    this.api.addAnnonce(this.currentAnnonce).subscribe(
       data=>{
-        this.getAllCategory()
+        this.getAllAnnonce()
         console.log(data);
       },err=>{
         console.log(err);
       }
     )
   }
+
 
 }
