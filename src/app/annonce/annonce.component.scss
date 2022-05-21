@@ -9,6 +9,22 @@
     flex-direction: column-reverse;
     padding-bottom: 15px;
   }
+  .btn-block.btn-info{
+    background-color: #3c8dbc;
+    color: #fff;
+
+    &::hover{
+      background-color: #0a6ba3;
+    }
+  }
+  .btn-block.btn-violet{
+    background-color: #6f42c1;
+    color: #fff;
+
+    &:hover{
+      background-color: #6533c0;
+    }
+  }
   
   .modal-content {
   
@@ -37,6 +53,9 @@
     button{
       margin: 0 5px;
     }
+  }
+  .btn{
+    font-family: Poppins-Regular;
   }
 
 .category{

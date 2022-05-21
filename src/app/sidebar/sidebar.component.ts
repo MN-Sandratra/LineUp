@@ -47,27 +47,22 @@ export const MENU = [
     icon:faTachometerAlt,
     path: ['./dashboard']
   },
-  {
-    name: 'Caisse',
-    icon:faCashRegister,
-    path: ['./caisse']
-  }
 ];
 
 export const MENUADMIN=[
   {
     name: 'Categories',
     icon:faList,
-    path: ['./category']
+    path: ['./admin/category']
   },
   {
     name: 'Video',
     icon:faVideo,
-    path: ['./pub']
+    path: ['./admin/video']
   },
   {
     name: 'Annonce',
     icon:faTachometerAlt,
-    path: ['./pub']
+    path: ['./admin/annonce']
   }
 ];

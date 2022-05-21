@@ -9,7 +9,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { ApiManagerService } from '../services/api-manager.service';
 import { DragDropService } from '../services/drag-drop.service';
 import axios from 'axios';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash,faAdd, faFilm } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { VideoplayerService } from '../services/videoplayer.service';
@@ -55,6 +55,8 @@ export class AdminComponent implements OnInit {
   }
   file: any;
   fileName: any
+  FaAdd=faAdd
+  faVideo=faFilm
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
 
@@ -66,6 +68,8 @@ export class AdminComponent implements OnInit {
       'refreshVideo',
       () => {
         this.getAllVideo();
+        this.progress=null
+        this.fileArr=[];
       }
     )
     this.dtOptions = {
@@ -112,6 +116,11 @@ export class AdminComponent implements OnInit {
       console.log(this.fileArr);
       this.fileName = e.target.files[0].name;
     }
+  }
+
+  close(){
+    console.log("close");
+    this.fileArr=[];
   }
   async uploadFile(e: any) {
     let formData = new FormData()
@@ -178,7 +187,6 @@ export class AdminComponent implements OnInit {
     this.video.delVideo(this.currentVideo).subscribe(
       data => {
         this.getAllVideo();
-        this.dtTrigger.next('')
       }, err => {
         console.log(err);
       }

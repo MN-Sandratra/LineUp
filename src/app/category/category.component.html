@@ -11,29 +11,40 @@
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLabel">{{currentAction}} une category</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="cancel()"></button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                      <form [formGroup]="formCategory">
                         <div class="pl-md-1 mt-3">
                           <div class=" form-group">
-                            <label> Identifiant </label>
-                            <input class=" form-control" placeholder="Identifiant" type="text" name="identifiant"  [(ngModel)]="currentCategory.id"/>
+                            <label [class.text-danger]="formCategory.get('identifiant')?.invalid &&
+                            formCategory.get('identifiant')?.touched "> Identifiant </label>
+                            <input class=" form-control" formControlName="identifiant" placeholder="Identifiant" type="text" name="identifiant"
+                            [class.is-invalid]="formCategory.get('identifiant')?.invalid &&
+                            formCategory.get('identifiant')?.touched "/>
                           </div>
+                          <small class="text-danger" [class.d-none]="formCategory.get('identifiant')?.valid ||
+                          formCategory.get('identifiant')?.untouched ">Veuillez remplir le champ identifiant</small>
                         </div>
                         <div class=" row">
                             <div class=" col-md-12 mt-3">
                                 <div class=" form-group">
-                              <label> Categorie </label>
-                              <input class=" form-control" placeholder="Category" type="text"name="category" [(ngModel)]="currentCategory.category"/>
+                              <label [class.text-danger]="formCategory.get('category')?.invalid &&
+                              formCategory.get('category')?.touched "> Categorie </label>
+                              <input class=" form-control" placeholder="Category" type="text"name="category" required [(ngModel)]="currentCategory.category" 
+                              formControlName="category" placeholder="Identifiant" type="text" name="identifiant"
+                              [class.is-invalid]="formCategory.get('category')?.invalid &&
+                              formCategory.get('category')?.touched "/>
                             </div>
+                            <small class="text-danger" [class.d-none]="formCategory.get('category')?.valid ||
+                            formCategory.get('category')?.untouched ">Veuillez renseigner une categorie</small>
                           </div>
                         </div>
                       </form>
                     </div>
                     <div class="modal-footer">
                       <span>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancel()">Annuler</button>
                       </span>
                       <span [ngSwitch]="currentAction">
                         <span *ngSwitchCase="'Modifier'">
@@ -63,7 +74,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteCategory()">Supprimer</button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteCategory()">Supprimer</button>
                     </div>
                   </div>
                 </div>
@@ -75,7 +86,7 @@
                   </div>
                   <div class="card-body">
                     <div class="action">
-                      <button type="button" class="btn btn-primary ml-auto" data-bs-toggle="modal" data-bs-target="#clientModal" (click)="ajoutCategory()">
+                      <button type="button" class="btn btn-block btn-info ml-auto" data-bs-toggle="modal" data-bs-target="#clientModal" (click)="ajoutCategory()">
                         <fa-icon [icon]="FaAdd"></fa-icon> Ajouter
                       </button>
                     </div>
@@ -95,7 +106,7 @@
                           <td>{{cat.id}}</td>
                           <td>{{cat.category}}</td>
                           <td class="td-action text-center">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clientModal" (click)="modifierCategory(cat)">
+                            <button type="button" class="btn btn-block btn-violet" data-bs-toggle="modal" data-bs-target="#clientModal" (click)="modifierCategory(cat)">
                             <fa-icon [icon]="FaModif"></fa-icon>
                             </button>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteClient" (click)="  supprimerCategory(cat)">

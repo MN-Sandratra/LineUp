@@ -8,13 +8,18 @@
                   <div class="card p-4" id="print-section">
                     <div class="card-body">
                       <div class="text-center">
-                        <h1>Bienvenue</h1>
-                        <p class="caisse">Le numero actuel</p>
+                        <h1>Entreprise</h1>
+                        <p class="caisse">Identifiant</p>
                         <div class="my-number">
+                          <ng-container *ngIf="currentCategoryId; else elseTemplate">
                             <h1>{{currentCategoryId}} -{{info.numero}}</h1>
+                          </ng-container>
+                          <ng-template #elseTemplate>
+                            <h1>0</h1>
+                          </ng-template>
                         </div>
-                        <p class="hour">{{date | date}}</p>
-                        <p class="caisse"> Comptoire numero : {{info.Caisse}}</p>
+                        <p class="hour"> Comptoire numero : {{info.Caisse}}</p>
+                        <p class="caisse">{{date | date}}, {{date | date:'HH:mm'}}</p>
                     </div>
                     </div>
                   </div>

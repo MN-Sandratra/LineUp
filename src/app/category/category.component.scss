@@ -3,6 +3,37 @@
       margin-bottom: 0px;
     }
   }
+
+  .btn{
+    font-family: Poppins-Regular;
+  }
+  .btn-block.btn-info{
+    background-color: #3c8dbc;
+    color: #fff;
+
+    &:hover{
+      background-color: #0a6ba3;
+    }
+  }
+  .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #3c8dbc !important;
+    border-color: #3c8dbc !important;
+}
+
+.page-link{
+  color: #0a6ba3 !important;
+}
+
+  .btn-block.btn-violet{
+    background-color: #6f42c1;
+    color: #fff;
+
+    &:hover{
+      background-color: #6533c0;
+    }
+  }
   
   .action {
     display: flex;

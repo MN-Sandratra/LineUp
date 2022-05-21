@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule, RouterComponent } from './app-routing.module';
@@ -25,9 +25,13 @@ import { CategoryComponent } from './category/category.component';
 import { NgxPrintModule } from 'ngx-print';
 import { DragDropDirective } from './drag-drop.directive';
 import {FileUploadModule} from 'ng2-file-upload';
-import { AnnonceComponent } from './annonce/annonce.component'
+import { AnnonceComponent } from './annonce/annonce.component';
+import { AcceuilComponent } from './acceuil/acceuil.component';
+import { registerLocaleData } from '@angular/common';
+import localeFr  from '@angular/common/locales/fr';
+import { AcceuilListComponent } from './acceuil-list/acceuil-list.component'
 
-
+registerLocaleData(localeFr);
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +50,9 @@ import { AnnonceComponent } from './annonce/annonce.component'
     AdminComponent,
     CategoryComponent,
     DragDropDirective,
-    AnnonceComponent
+    AnnonceComponent,
+    AcceuilComponent,
+    AcceuilListComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +67,9 @@ import { AnnonceComponent } from './annonce/annonce.component'
     ToastrModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {provide:LOCALE_ID,useValue:'fr'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

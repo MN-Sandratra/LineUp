@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AcceuilComponent } from './acceuil/acceuil.component';
 import { AdminComponent } from './admin/admin.component';
 import { AnnonceComponent } from './annonce/annonce.component';
 import { CategoryComponent } from './category/category.component';
@@ -10,6 +11,7 @@ import { SuiviComponent } from './suivi/suivi.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
+  {path:"",component:AcceuilComponent},
   {path:"user",component:UserComponent},
   {path:"main/:id",component:MainComponent,
   children:[

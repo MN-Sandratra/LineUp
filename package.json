@@ -29,6 +29,7 @@
     "datatables.net": "^1.11.3",
     "datatables.net-bs5": "^1.11.3",
     "dotenv": "^16.0.0",
+    "esbuild": "^0.14.39",
     "fs": "^0.0.1-security",
     "jquery": "^3.6.0",
     "ng2-file-upload": "^1.4.0",

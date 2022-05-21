@@ -29,3 +29,9 @@ body {
     font-family: Poppins-SemiBold;
     src: url('./assets/poppins/Poppins-SemiBold.ttf'); 
   }
+  body:not(.layout-fixed) .main-sidebar {
+    height: inherit;
+    min-height: 100%;
+    position: fixed;
+    top: 0;
+  }

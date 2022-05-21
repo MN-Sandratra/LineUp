@@ -1,4 +1,4 @@
-$violet:rgb(188, 14, 231);
+$violet:#3c8dbc;
 
 .d-container {
   color: #fff;
@@ -47,8 +47,19 @@ $violet:rgb(188, 14, 231);
     flex-direction: column;
     height: inherit;
     .header{
+      color: #000;
+      display: flex;
+      align-items: center;
       height: 10vh;
-      border-bottom: 5px solid $violet;
+      border-bottom: 10px solid $violet;
+
+      span{
+        font-family: Poppins-Regular;
+        font-size: 1.5em;
+        font-weight: 500;
+        padding-left: 15px;
+        color: #686969;
+      }
     }
     .content{
       height: 80vh;

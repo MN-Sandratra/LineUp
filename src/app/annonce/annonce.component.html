@@ -11,21 +11,29 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="exampleModalLabel">{{currentAction}} une annonce</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
                         </div>
                         <div class="modal-body">
-                          <form>
+                          <form [formGroup]="formAnnonce">
                             <div class="pl-md-1 mt-3">
                             <div class="mb-3">
-                              <label for="" class="form-label">Annonce</label>
-                              <textarea class="form-control" name="txt" id="" rows="3" [(ngModel)]="currentAnnonce.txt"></textarea>
+                              <label for="" class="form-label"
+                              [class.text-danger]="formAnnonce.get('annonce')?.invalid &&
+                                formAnnonce.get('annonce')?.touched "
+                              >Annonce</label>
+                              <textarea class="form-control" name="txt" id="" rows="3" formControlName="annonce"
+                              [class.is-invalid]="formAnnonce.get('annonce')?.invalid &&
+                                formAnnonce.get('annonce')?.touched "
+                              ></textarea>
                             </div>
+                            <small class="text-danger" [class.d-none]="formAnnonce.get('annonce')?.valid ||
+                            formAnnonce.get('annonce')?.untouched ">Veuillez remplir l'annonce</small>
                             </div>
                           </form>
                         </div>
                         <div class="modal-footer">
                           <span>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Annuler</button>
                           </span>
                           <span [ngSwitch]="currentAction">
                             <span *ngSwitchCase="'Modifier'">
@@ -55,7 +63,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteAnnonce()">Supprimer</button>
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteAnnonce()">Supprimer</button>
                         </div>
                       </div>
                     </div>
@@ -67,7 +75,7 @@
                       </div>
                       <div class="card-body">
                         <div class="action">
-                          <button type="button" class="btn btn-primary ml-auto" data-bs-toggle="modal" data-bs-target="#clientModal" (click)="ajoutAnnonce()">
+                          <button type="button" class="btn btn-block btn-info ml-auto" data-bs-toggle="modal" data-bs-target="#clientModal" (click)="ajoutAnnonce()">
                             <fa-icon [icon]="FaAdd"></fa-icon> Ajouter
                           </button>
                         </div>
@@ -85,7 +93,7 @@
                               <td>{{cat.id}}</td>
                               <td>{{cat.txt}}</td>
                               <td class="td-action text-center">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clientModal" (click)="modifierAnnonce(cat)">
+                                <button type="button" class="btn btn-block btn-violet" data-bs-toggle="modal" data-bs-target="#clientModal" (click)="modifierAnnonce(cat)">
                                 <fa-icon [icon]="FaModif"></fa-icon>
                                 </button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteClient" (click)="  supprimerAnnonce(cat)">

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { faAdd, faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { DataTableDirective } from 'angular-datatables';
+import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { ApiManagerService } from '../services/api-manager.service';
 import { Annonce } from './annonce';
@@ -19,8 +21,12 @@ export class AnnonceComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   dtElement:DataTableDirective | undefined;
+  formAnnonce = this.fb.group({
+    annonce: ['', Validators.required],
+  }
+  );
 
-  constructor(private api:ApiManagerService) { }
+  constructor(private api:ApiManagerService ,private fb:FormBuilder,private toast:ToastrService) { }
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
@@ -60,6 +66,9 @@ export class AnnonceComponent implements OnInit {
     setTimeout(()=>this.dtTrigger.next(''),200);
   }
 
+  close(){
+    this.formAnnonce.reset();
+  }
   getAllAnnonce(){
     this.api.getAnnonce().subscribe(
       data=>{
@@ -82,19 +91,26 @@ export class AnnonceComponent implements OnInit {
     )
   }
   updateAnnonce(){
-    this.api.modifyAnnonce(this.currentAnnonce).subscribe(
+    if(this.formAnnonce.valid){
+      this.currentAnnonce.txt=this.formAnnonce.get('annonce').value
+      this.api.modifyAnnonce(this.currentAnnonce).subscribe(
       data=>{
         this.getAllAnnonce()
+        this.toast.success("Enregistrement de l'annonce","réussi")
         console.log(data);
       },err=>{
         console.log(err);
       }
     )
+  }else{
+    this.toast.error("Remplisser le champ correctement","Attention")
+  }
   }
 
   modifierAnnonce(annonce:any){
     this.currentAction="Modifier";
     this.currentAnnonce=annonce;
+    this.formAnnonce.controls['annonce'].setValue(this.currentAnnonce.txt)
   }
   ajoutAnnonce(){
     this.currentAction="Ajouter";
@@ -119,14 +135,20 @@ export class AnnonceComponent implements OnInit {
   }
 
   addAnnonce(){
-    this.api.addAnnonce(this.currentAnnonce).subscribe(
-      data=>{
-        this.getAllAnnonce()
-        console.log(data);
-      },err=>{
-        console.log(err);
-      }
-    )
+    if(this.formAnnonce.valid){
+      this.currentAnnonce.txt=this.formAnnonce.get('annonce').value
+      this.api.addAnnonce(this.currentAnnonce).subscribe(
+        data=>{
+          this.getAllAnnonce()
+          this.toast.success("Enregistrement de l'annonce","réussi")
+          console.log(data);
+        },err=>{
+          console.log(err);
+        }
+      )
+    }else{
+      this.toast.error("Remplisser le champ correctement","Attention")
+    }
   }
 
 

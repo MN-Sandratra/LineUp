@@ -3,9 +3,19 @@
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
     width: 250px;
   }
-  
+  .layout-fixed .main-sidebar {
+    bottom: 0;
+    float: none;
+    height: 100vh;
+    left: 0;
+    position: fixed !important;
+    top: 0;
+}  
   @media (prefers-reduced-motion: reduce) {
     .main-sidebar, .main-sidebar::before {
       transition: none;
     }
+  }
+  .btn{
+    font-family: Poppins-Regular;
   }

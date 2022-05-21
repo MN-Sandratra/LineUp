@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   fadeco=faLock;
   facon=faLockOpen;
   categories:any[]=[];
-  currentId!:number;
+  currentId!:any;
   currentCatId!:number;
   currentCat!:String ;
   currentFree="Verrouiller la caisse";
@@ -117,9 +117,9 @@ export class DashboardComponent implements OnInit {
         if(currentCaisse.length!=0){
           this.caisseStatus=currentCaisse[0].free;
           if(this.caisseStatus){
-            this.currentFree="Verrouiller la caisse"
+            this.currentFree="Verrouiller le comptoire"
           }else{
-            this.currentFree="Deverroiller la caisse"
+            this.currentFree="Deverroiller le comptoire"
           }
         }
       }
@@ -127,7 +127,7 @@ export class DashboardComponent implements OnInit {
   }
 
   updateCaisseStatus(){
-    this.api.turnCaisse(this.currentId).subscribe(
+    this.api.turnCaisse(this.currentCatId+'-'+this.currentId).subscribe(
       data=>{
         this.getStatus();
         this.toast.info("vous venez de "+this.currentFree,"information")
@@ -138,14 +138,15 @@ export class DashboardComponent implements OnInit {
   }
 
   deconnexion(){
-    if(this.caisseStatus){
-      this.api.turnCaisse(this.currentId).subscribe(
-        data=>{
-          this.getStatus();
-          this.myroute.navigate(['/login'])
-        }
-      )
-    }
-    this.toast.info("vous etes deconnecter","Info")
-  }
+
+  //   if(this.caisseStatus){
+  //     this.api.turnCaisse(this.currentId).subscribe(
+  //       data=>{
+  //         this.getStatus();
+  //         this.myroute.navigate(['/login'])
+  //       }
+  //     )
+  //   }
+  //   this.toast.info("vous etes deconnecter","Info")
+   }
 }
