@@ -1,10 +1,10 @@
 <div class="suivi container-fluid card">
   <div class="row">
     <div class="col number">
-      <p class="caisse_number">{{caisse.id}}-{{caisse.content[0]? caisse.content[0].numero:0}}</p>
+      <p class="caisse_number">{{caisse.id}}{{caisse.content[0]? caisse.content[0].numero:0}}</p>
     </div>
     <div class="col guichet">
-      <p>Comptoire</p>
+      <p>{{caisse.category}}</p>
       <p class="numero">{{caisse.caisse}}</p>
     </div>
   </div>

@@ -4,7 +4,8 @@
                 <div class="principal">
                     <div class="header">
                         <span>
-                            Gestion d'attente
+                            <img src="assets/images/logo2.jpg" alt="" class="img">
+                            <img src="assets/images/logo1.jpg" alt="" class="img">
                         </span>
                     </div>
                     <div class="content">
@@ -21,8 +22,8 @@
                     <p>Appel</p> 
                 </div>
                 <div class="content">
-                    <app-card-suivi class="col-lg-4 col-6" *ngFor="let caisse of caisses" 
-                [caisse]="caisse" ></app-card-suivi>
+                        <app-card-suivi class="col-lg-4 col-6" *ngFor="let caisse of caisses" 
+                    [caisse]="caisse" ></app-card-suivi>
                 </div>
                 <div class="date">
                     <p>{{today | date:"HH:mm"}}</p>

@@ -25,12 +25,26 @@ export class SuiviComponent implements OnInit {
     setInterval(()=>this.today=Date.now(),1000);
     this.getAllCaisse();
     this.getVideo();
-    setInterval(()=>this.getAllCaisse(),10000);
+    //setInterval(()=>this.getAllCaisse(),10000);
     this.Mysocket=this.socket.createSocket();
     this.Mysocket.on('speakT',(data:any)=>{
       console.log(data);
       this.speak(data)
     })
+
+    this.Mysocket.on('comptoire',(data:any)=>{
+      this.getAllCaisse();
+    })
+
+    this.Mysocket.on('annonceReload',(data:any)=>{
+      this.getAllAnnonce();
+    })
+
+    this.Mysocket.on('videoReload',(data:any)=>{
+      console.log("Misy miova an");
+      this.getVideo();
+    })
+
     this.getAllAnnonce();
   }
 
@@ -38,7 +52,7 @@ export class SuiviComponent implements OnInit {
   getVideo(){
     this.apiVideo.getvideo().subscribe(
       data=>{
-        this.video=data;
+        this.video=data.reverse();
         console.log(data);
       },err=>{
         console.log("tsy azo ohh");
@@ -60,8 +74,8 @@ export class SuiviComponent implements OnInit {
       data=>{
         this.Annonce=data
         this.PubMessage="";
-        this.Annonce.forEach((x:Annonce)=>{
-          this.PubMessage+=x.txt+", "
+        this.Annonce.reverse().forEach((x:Annonce)=>{
+          this.PubMessage+=x.txt+".\t "
         })
       },err=>{
         console.log();

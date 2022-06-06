@@ -144,6 +144,7 @@ export class AdminComponent implements OnInit {
           }
         }
       )
+      this.getAllVideo();
       console.log(res);
     } catch (ex) {
       console.log(ex);

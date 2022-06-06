@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { AffichageSocketService } from '../services/affichage-socket.service';
 import { VideoplayerService } from '../services/videoplayer.service';
 
 @Component({
@@ -18,11 +19,17 @@ export class VideoComponent implements OnInit {
   //   "../../assets/video/video2.mp4"
   // ]
   myvideo:any;
-  constructor(private apivideo:VideoplayerService) { }
+  mysocket:any;
+  constructor(private apivideo:VideoplayerService,private apiSocket:AffichageSocketService) { }
 
   ngOnInit(): void {
     this.getvideo();
     console.log(this.video);
+    this.mysocket=this.apiSocket.createSocket();
+
+    this.mysocket.on('videoReload',(data:any)=>{
+      this.getvideo();
+    })
   }
 
   getvideo(){
@@ -31,6 +38,7 @@ export class VideoComponent implements OnInit {
         this.myvideo=data;
         this.myvideo=this.video.map((x:any)=>environment.baseUrl+x.link);
         this.videoPlay(0);
+        this.i=0;
       },err=>{
         console.log("tsy azo fona ehh");
       }
@@ -52,5 +60,4 @@ export class VideoComponent implements OnInit {
     console.log("Tapitra ahh");
     this.videoPlay(this.i);
   }
-
 }

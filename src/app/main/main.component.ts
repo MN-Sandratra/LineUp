@@ -85,6 +85,7 @@ export class MainComponent implements OnInit {
       }
     )
   }
+  
   toggleMenuSidebar() {
     if (this.sidebarMenuOpened) {
       this.renderer.removeClass(

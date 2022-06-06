@@ -4,6 +4,7 @@ import { faArrowRight, faLock, faLockOpen, faVolumeHigh } from '@fortawesome/fre
 import { ToastrService } from 'ngx-toastr';
 import TTS from 'text-to-speech-offline';
 import { Caisse } from '../caisse/caisse';
+import { AffichageSocketService } from '../services/affichage-socket.service';
 import { ApiManagerService } from '../services/api-manager.service';
 import { CaisseSocketService } from '../services/caisse-socket.service';
 
@@ -26,14 +27,20 @@ export class DashboardComponent implements OnInit {
   currentFree="Verrouiller la caisse";
   caisseStatus=true;
 
+  Mysocket:any;
+
   constructor(private api:ApiManagerService ,private route:ActivatedRoute,private toast:ToastrService
-    ,private myroute:Router,private caisseSocket:CaisseSocketService) { }
+    ,private myroute:Router,private caisseSocket:CaisseSocketService,private apisocket:AffichageSocketService) { }
 
   clients:any[]=[];
   ngOnInit(): void {
     this.getcurrentId();
     this.getClient();
-    this.getdataSecond();
+    this.Mysocket=this.apisocket.createSocket();
+    this.Mysocket.on('comptoire',(data:any)=>{
+      this.getClient();
+    })
+    //this.getdataSecond();
     this.getStatus();
     this.caisseSocket.createSocket();
   }
@@ -81,11 +88,17 @@ export class DashboardComponent implements OnInit {
     this.caisseSocket.sendSpeak(data);
   }
 
+
+  sendComptoire(){
+    this.caisseSocket.socket.emit('comptoire');
+  }
+  //suivant
   getNextClient(id:number){
     let fullId=this.currentCatId+'-'+this.currentId;
     this.api.getNextClient(fullId).subscribe(
       data=>{
         this.getClient();
+        //this.sendComptoire();
         setTimeout(() => {
           //this.speak();
           this.sendSpeak();

@@ -35,6 +35,12 @@ $violet:#3c8dbc;
 //     background-color: rgba(128, 122, 122, 0.5);
 // }
 // }
+
+.img{
+  height: calc(7vh);
+  object-fit: cover;
+  margin-left: 5px;
+}
 .gridrow{
   box-sizing: border-box;
   display: flex;
@@ -54,10 +60,12 @@ $violet:#3c8dbc;
       border-bottom: 10px solid $violet;
 
       span{
+        height: inherit;
         font-family: Poppins-Regular;
         font-size: 1.5em;
         font-weight: 500;
-        padding-left: 15px;
+        //padding-left: 15px;
+        padding: 1vh 15px;
         color: #686969;
       }
     }
