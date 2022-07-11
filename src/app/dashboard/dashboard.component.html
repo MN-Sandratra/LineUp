@@ -7,7 +7,7 @@
       Style="bg-warning"></app-small-box>
     <!--apina sauter -->
     <div class="row action">
-      <div class="col-12 col-sm-6 col-md-4 btn" (click)="getNextClient(1)">
+      <div class="col-12 col-sm-6 col-md-6 btn" (click)="getNextClient(1)">
         <div class="info-box">
           <span class="info-box-icon bg-info elevation-1">
             <fa-icon [icon]="fanext" class="lg"></fa-icon>
@@ -21,7 +21,7 @@
         <!-- /.info-box -->
       </div>
 
-      <div class="col-12 col-sm-6 col-md-4 btn" (click)="sendSpeak()">
+      <div class="col-12 col-sm-6 col-md-6 btn" (click)="sendSpeak()">
         <div class="info-box">
           <span class="info-box-icon bg-warning elevation-1">
             <fa-icon [icon]="facall" class="lg"></fa-icon>
@@ -35,7 +35,7 @@
         <!-- /.info-box -->
       </div>
 
-      <div class="col-12 col-sm-6 col-md-4 btn" (click)="updateCaisseStatus()">
+      <!--<div class="col-12 col-sm-6 col-md-4 btn" (click)="updateCaisseStatus()">
         <div class="info-box">
           <span class="info-box-icon bg-danger elevation-1">
             <ng-container *ngIf="caisseStatus; else elseTemplate">
@@ -49,9 +49,9 @@
             <span class="info-box-text">{{currentFree}}</span>
           </div>
           <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-      </div>
+        <!--</div>
+        <!-- /.info-boxs
+      </div> -->
     </div>
   </div>
   <app-client [Clients]="clients"></app-client>
