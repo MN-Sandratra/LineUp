@@ -8,11 +8,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { SuiviComponent } from './suivi/suivi.component';
+import { TicketsComponent } from './tickets/tickets.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   {path:"",component:AcceuilComponent},
-  {path:"user",component:UserComponent},
+  {path:"user/:id",component:UserComponent},
+  {path:"tickets",component:TicketsComponent},
   {path:"main/:id",component:MainComponent,
   children:[
     {path:'dashboard',component:DashboardComponent}

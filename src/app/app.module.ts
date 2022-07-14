@@ -29,7 +29,9 @@ import { AnnonceComponent } from './annonce/annonce.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr  from '@angular/common/locales/fr';
-import { AcceuilListComponent } from './acceuil-list/acceuil-list.component'
+import { AcceuilListComponent } from './acceuil-list/acceuil-list.component';
+import { TicketsComponent } from './tickets/tickets.component';
+import { TicketItemComponent } from './ticket-item/ticket-item.component'
 
 registerLocaleData(localeFr);
 @NgModule({
@@ -52,7 +54,9 @@ registerLocaleData(localeFr);
     DragDropDirective,
     AnnonceComponent,
     AcceuilComponent,
-    AcceuilListComponent
+    AcceuilListComponent,
+    TicketsComponent,
+    TicketItemComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiManagerService } from '../services/api-manager.service';
 import { NgxPrintModule } from 'ngx-print';
 import { AffichageSocketService } from '../services/affichage-socket.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -17,25 +18,40 @@ export class UserComponent implements OnInit {
   categories:any=[];
   currentCategory:any="";
   currentCategoryId:any="";
+  catToShow:any;
   mySocket:any;
+  catId:any;
   info:any={
     Caisse:0,
     numero:0,
     date:this.date,
   };
 
-  constructor(private api:ApiManagerService,private toast:ToastrService,private socket:AffichageSocketService) { }
+  constructor(private route:ActivatedRoute, private api:ApiManagerService,private toast:ToastrService,private socket:AffichageSocketService) { }
 
   ngOnInit(): void {
     this.getAllCategory();
+    this.getCatById();
     this.mySocket=this.socket.createSocket();
     this.mySocket.on('refreshUser',()=>{
       this.getAllCategory();
     })
   }
 
+  getCatById(){
+    this.catId=this.route.snapshot.paramMap.get('id');
+    this.api.getCategoryById(this.catId).subscribe(
+      data=>{
+        this.catToShow=data;
+      },err=>{
+        console.log(err);
+      }
+    )
+  }
+
   getTicket(){
     //print element
+    this.currentCategory=this.route.snapshot.paramMap.get('id')
     if(this.currentCategory==""){
       this.toast.error("Veuillez selectioner un category","Attention")
     }else{

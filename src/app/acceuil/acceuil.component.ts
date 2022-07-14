@@ -19,7 +19,7 @@ export class AcceuilComponent implements OnInit {
       designation:"Ticket",
       description:"Retirer un ticket",
       icon:this.ticket,
-      path:['/user'],
+      path:['/tickets'],
       color:"bg-info"
     },
     {
