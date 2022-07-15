@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiManagerService } from '../services/api-manager.service';
 import { NgxPrintModule } from 'ngx-print';
 import { AffichageSocketService } from '../services/affichage-socket.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -27,7 +27,7 @@ export class UserComponent implements OnInit {
     date:this.date,
   };
 
-  constructor(private route:ActivatedRoute, private api:ApiManagerService,private toast:ToastrService,private socket:AffichageSocketService) { }
+  constructor(private route:ActivatedRoute, private api:ApiManagerService,private toast:ToastrService,private socket:AffichageSocketService,private router:Router) { }
 
   ngOnInit(): void {
     this.getAllCategory();
@@ -65,6 +65,11 @@ export class UserComponent implements OnInit {
       }
     )
   }
+  }
+  navigate(){
+    setTimeout(() => {
+      this.router.navigate(['tickets'])
+    }, 1000);
   }
 
   getCategoryIdentifiant(id:any){
