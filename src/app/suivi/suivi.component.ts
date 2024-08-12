@@ -60,7 +60,7 @@ export class SuiviComponent implements OnInit {
     )
   }
   getAllCaisse(){
-    this.api.getAllcaisser().subscribe(
+    this.api.getAllCaisse().subscribe(
       data=>{
         this.caisses=data;
       },(err: any)=>{

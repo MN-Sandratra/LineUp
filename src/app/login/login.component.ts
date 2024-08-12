@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   getAllCategory(){
     this.api.getCathegory().subscribe(
       data=>{
-        this.categories=data.content;
+        this.categories=data;
         console.log(data);
         this.categories=["",...this.categories];
       },err=>{
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
     this.route.navigate([currentroute])
   }
   getCaisseVerrouiller(id:any,cat:any){
-    this.api.getAllcaisser().subscribe(
+    this.api.getAllCaisse().subscribe(
       data=>{
         this.caisses=data;
         let nbr:Caisse[]=this.caisses.filter(x=>x.caisse==id && x.type==cat);

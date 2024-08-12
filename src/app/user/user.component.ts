@@ -18,7 +18,7 @@ export class UserComponent implements OnInit {
   categories:any=[];
   currentCategory:any="";
   currentCategoryId:any="";
-  catToShow:any;
+  catToShow:any={};
   mySocket:any;
   catId:any;
   info:any={
@@ -94,7 +94,7 @@ export class UserComponent implements OnInit {
   }
    
   getAllcaisse(){
-    this.api.getAllcaisser().subscribe(
+    this.api.getAllCaisse().subscribe(
       data=>{
         this.caisses=data;
         if(this.caisses.length===0){

@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit {
   getcat(){
     this.api.getCathegory().subscribe(
       data=>{
-        this.categories=data.content;
+        this.categories=data;
         let id=this.route.parent?.snapshot.paramMap.get('id');
         let ids=id?.split('-');
         if(ids){
@@ -100,7 +100,6 @@ export class DashboardComponent implements OnInit {
         this.getClient();
         //this.sendComptoire();
         setTimeout(() => {
-          //this.speak();
           this.sendSpeak();
         },500 );
       },err=>{
@@ -123,7 +122,7 @@ export class DashboardComponent implements OnInit {
     )
   }
   getStatus(){
-    this.api.getAllcaisser().subscribe(
+    this.api.getAllCaisse().subscribe(
       data=>{
         let caisses:Caisse[]=data;
         let currentCaisse=caisses.filter(x=>x.caisse==this.currentId);

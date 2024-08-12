@@ -50,7 +50,7 @@ export class MainComponent implements OnInit {
   getAllCathegory(){
     this.api.getCathegory().subscribe(
       data=>{
-        this.category=data.content;
+        this.category=data;
         console.log(this.category);
         this.currentCat=this.category.filter(x=>x.type==this.currentCatId);
         this.currentCat=this.currentCat[0].category+" "+this.currentID

@@ -16,7 +16,7 @@ export class ApiManagerService {
   getAllClient(id:any):Observable<any>{
     return this.http.get(this.baseUrl+"/api/caisses/"+id);
   }
-  getAllcaisser():Observable<any>{
+  getAllCaisse():Observable<any>{
     return this.http.get(this.baseUrl+"/api/caisses/");
   }
 
@@ -72,12 +72,14 @@ export class ApiManagerService {
     return this.http.post(this.baseUrl+'/api/addAnnonce/',annonce);
   }
 
-  getAnnonce():Observable<any>{
-    return this.http.get(this.baseUrl+'/api/annonce/');
+  getAnnonce():Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+'/api/annonce/');
   }
+
   modifyAnnonce(annonce:Annonce):Observable<any>{
     return this.http.post(this.baseUrl+'/api/editAnnonce/',annonce);
   }
+
   delAnnonce(id:any){
     return this.http.get(this.baseUrl+'/api/delAnnonce/'+id);
   }

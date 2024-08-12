@@ -73,8 +73,8 @@ export class CategoryComponent implements OnInit {
   getAllCategory() {
     this.api.getCathegory().subscribe(
       data => {
-        this.myCategory = data.content;
-        console.log(data);
+        this.myCategory = data;
+        console.log(this.myCategory);
       }, err => {
         console.log(err);
       }

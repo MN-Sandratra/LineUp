@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl :"http://192.168.215.128:7539",
-  baseUpload:"http://192.168.215.128:8080"
+  baseUrl :"https://express-line-up.vercel.app",
+  baseUpload:"https://express-line-up.vercel.apps"
 };
